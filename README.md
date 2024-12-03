@@ -85,6 +85,7 @@ pipeline {
 2. Observa los resultados en la consola para asegurarte de que las etapas se completaron con éxito.
 
 🛠️ Tecnologías Utilizadas
+
 ⚙️ Node.js
 🛠️ Jenkins
 🌐 GitHub
