@@ -31,5 +31,61 @@ Antes de comenzar, asegúrate de contar con los siguientes elementos:
 2. Agrega el token de autenticación:
    ```bash
    ngrok config add-authtoken <tu-token>
+3. Despliega el túnel: ngrok http http://localhost:8080
+4. Copia la URL pública proporcionada por ngrok y úsala como Payload URL en el WebHook (asegúrate de agregar /github-webhook/ al final).
 
-   
+### 4️⃣ Configurar Jenkins
+1. Accede a Jenkins y crea un nuevo item seleccionando Pipeline.
+2. En la configuración del pipeline:
+   Selecciona Pipeline script y pega el siguiente script:
+   pipeline {
+    agent any
+    triggers {
+        githubPush() // Trigger para eventos push desde GitHub
+    }
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git url: 'https://github.com/<tu-usuario>/nodejs-helloworld-api', branch: 'main'
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('Run Tests') {
+            steps {
+                sh 'npm test'
+            }
+        }
+    }
+    post {
+        success {
+            echo 'Pipeline completed successfully! ✅'
+        }
+        failure {
+            echo 'Pipeline failed. ❌ Please check the logs!'
+        }
+    }
+}
+
+3. En Build Triggers, selecciona la opción GitHub hook trigger for GITScm polling.
+4. Guarda la configuración.
+
+✅ Validar la Configuración
+1. En Recent Deliveries del WebHook en GitHub, verifica que las solicitudes tienen un estado 200 OK.
+2. Realiza un cambio en el archivo README.md y haz un commit.
+3. Jenkins debería disparar automáticamente el pipeline.
+
+🧪 Validación Final
+1. Accede al pipeline en Jenkins y revisa la ejecución.
+2. Observa los resultados en la consola para asegurarte de que las etapas se completaron con éxito.
+
+🛠️ Tecnologías Utilizadas
+⚙️ Node.js
+🛠️ Jenkins
+🌐 GitHub
+🚀 ngrok
+
+🎉 ¡Feliz Automatización! 🚀
