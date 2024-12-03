@@ -71,7 +71,7 @@ pipeline {
         }
     }
 }
-
+```
 3. En Build Triggers, selecciona la opción GitHub hook trigger for GITScm polling.
 4. Guarda la configuración.
 
