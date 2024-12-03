@@ -34,11 +34,13 @@ Antes de comenzar, asegúrate de contar con los siguientes elementos:
 3. Despliega el túnel: ngrok http http://localhost:8080
 4. Copia la URL pública proporcionada por ngrok y úsala como Payload URL en el WebHook (asegúrate de agregar /github-webhook/ al final).
 
-### 4️⃣ Configurar Jenkins
-1. Accede a Jenkins y crea un nuevo item seleccionando Pipeline.
+### 4️⃣ **Configurar Jenkins**
+1. Accede a Jenkins y crea un nuevo ítem seleccionando **Pipeline**.
 2. En la configuración del pipeline:
-   Selecciona Pipeline script y pega el siguiente script:
-   pipeline {
+   - Selecciona **Pipeline script** y pega el siguiente script:
+
+```groovy
+pipeline {
     agent any
     triggers {
         githubPush() // Trigger para eventos push desde GitHub
