@@ -87,8 +87,11 @@ pipeline {
 🛠️ Tecnologías Utilizadas
 
 ⚙️ Node.js
+
 🛠️ Jenkins
+
 🌐 GitHub
+
 🚀 ngrok
 
 🎉 ¡Feliz Automatización! 🚀
